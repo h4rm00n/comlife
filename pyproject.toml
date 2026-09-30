@@ -1,0 +1,27 @@
+[project]
+name = "mcp-ssh-shell"
+version = "0.1.0"
+description = "Stateful MCP server providing persistent SSH shell access"
+requires-python = ">=3.10"
+dependencies = [
+  "mcp>=1.10.0,<2",
+  "asyncssh>=2.19.0",
+  "cryptography>=42.0.0",
+  "uvicorn>=0.23.0",
+]
+
+[project.scripts]
+mcp-ssh-shell = "mcp_ssh_shell.server:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[dependency-groups]
+dev = ["pytest>=8.0.0", "pytest-asyncio>=0.24.0"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/mcp_ssh_shell"]
